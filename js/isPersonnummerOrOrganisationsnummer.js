@@ -1,3 +1,9 @@
+
+function getCurrentShortYear() {
+  const d = new Date();
+  return d.getFullYear().toString().substr(-2);
+}
+
 function isDate(year, month, day) {
   // months have number 0-11 in JavaScript
   const m = month - 1;
@@ -10,11 +16,6 @@ function isDate(year, month, day) {
     return true;
   }
   return false;
-}
-
-function getCurrentShortYear() {
-  const d = new Date();
-  return d.getFullYear().toString().substr(-2);
 }
 
 function validateOrgOrPersonalNumber(input) {
@@ -36,7 +37,7 @@ function validateOrgOrPersonalNumber(input) {
     isOrgNum = false;
     // personal number can't be before 1900's
     if (number.substring(0,2) < 19) {
-      return { valid: false, isOrg: isOrgNum, msg: 'year is less than 1900' };;
+      return { valid: false, isOrg: isOrgNum, msg: 'year is less than 1900' };
     }
   }
   // third number in an org number can not be less than 2
@@ -63,13 +64,13 @@ function validateOrgOrPersonalNumber(input) {
 
   // check if personal id number is a fake date
   if (!isOrgNum && !isDate(number.substring(0,4), number.substring(4,6), number.substring(6,8))) {
-    return { valid: false, isOrg: isOrgNum, msg: 'fake date' };;
+    return { valid: false, isOrg: isOrgNum, msg: 'fake date' };
 
   }
 
   // check if birth date is in the future
   if (!isOrgNum && new Date(number.substring(0,4), number.substring(4,6), number.substring(6,8)) > new Date()) {
-    return { valid: false, isOrg: isOrgNum, msg: 'future date' };;
+    return { valid: false, isOrg: isOrgNum, msg: 'future date' };
   }
 
   // calculate and validate checksum with Luhn algorithm
