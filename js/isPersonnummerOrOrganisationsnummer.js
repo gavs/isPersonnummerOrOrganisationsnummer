@@ -12,10 +12,15 @@ function isDate(year, month, day) {
   return false;
 }
 
-export function validateOrgOrPersonalNumber(input) {
+function getCurrentShortYear() {
+  const d = new Date();
+  return d.getFullYear().toString().substr(-2);
+}
+
+function validateOrgOrPersonalNumber(input) {
   // check if number matches a swedish personal identity number or an organization number
   if (typeof input === 'undefined' || !input.match(/^(\d{6}|\d{8})(-|\+|\s)?(\d{4})$/)) {
-    return false;
+    return { valid: false, isOrg: undefined, msg: 'does not match input rule' };
   }
 
   const group = RegExp.$1;
@@ -29,6 +34,10 @@ export function validateOrgOrPersonalNumber(input) {
   // check if number is a personal number
   if (group.length === 8) {
     isOrgNum = false;
+    // personal number can't be before 1900's
+    if (number.substring(0,2) < 19) {
+      return { valid: false, isOrg: isOrgNum, msg: 'year is less than 1900' };;
+    }
   }
   // third number in an org number can not be less than 2
   if (isOrgNum && number.substring(2, 3) < 2) {
@@ -54,12 +63,13 @@ export function validateOrgOrPersonalNumber(input) {
 
   // check if personal id number is a fake date
   if (!isOrgNum && !isDate(number.substring(0,4), number.substring(4,6), number.substring(6,8))) {
-    return false;
+    return { valid: false, isOrg: isOrgNum, msg: 'fake date' };;
+
   }
 
   // check if birth date is in the future
   if (!isOrgNum && new Date(number.substring(0,4), number.substring(4,6), number.substring(6,8)) > new Date()) {
-    return false;
+    return { valid: false, isOrg: isOrgNum, msg: 'future date' };;
   }
 
   // calculate and validate checksum with Luhn algorithm
@@ -75,5 +85,5 @@ export function validateOrgOrPersonalNumber(input) {
     checksum += luhnSerie.substring(n, n + 1) * 1;
   }
 
-  return (checksum % 10 === 0);
+  return { valid: checksum % 10 === 0, isOrg: isOrgNum, msg: checksum % 10 === 0 ? 'all good' : 'wrong checksum' };
 }
