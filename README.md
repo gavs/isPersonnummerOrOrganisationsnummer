@@ -19,3 +19,30 @@ Organisation number supports the following formats:
 * NNNNNN NNNN
 * NNNNNN-NNNN
 * NNNNNN+NNNN
+
+## Installation
+```
+$ npm install ispersonnummerororganisationsnummer
+```
+
+## Example
+```js
+const validateOrgOrPersonalNumber = require('ispersonnummerororganisationsnummer');
+console.log(validateOrgOrPersonalNumber("YYMMDDNNNN"));
+```
+
+## Output
+
+Example output:
+
+```js
+{ valid: true, isOrg: true, msg: 'all good' }
+```
+
+`valid: true` is valid input
+
+`isOrg: false` is personnummer
+
+`isOrg: true` is organisationsnummer
+
+`msg` additional info
