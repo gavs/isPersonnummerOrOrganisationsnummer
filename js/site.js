@@ -1,18 +1,29 @@
-function validateInput() {
-    const number = document.getElementById('org').value;
-    const text = document.getElementById("text");
-    if (number.length === 0) {
-        text.innerHTML="Type to start";
-        return false;
-    }
-    if (number.length < 10) {
-        text.innerHTML="yymmdd-nnnn or nnnnnnnnnn";
-        return false;
-    }
-    const { valid, isOrg, msg } = validateOrgOrPersonalNumber(number);
-    if(valid) {
-        text.innerHTML=`is a valid ${isOrg ? 'organisation' : 'personal'} number.`;
-    } else {
-        text.innerHTML=`is not a organisation or personal number.<br />- ${msg}`;
-    }
+function validateInput(val) {
+  const text = document.getElementById("text");
+  if (val.length === 0) {
+    text.innerHTML = "Type to start";
+    return false;
+  }
+  if (val.length < 10) {
+    text.innerHTML = "yymmdd-nnnn or nnnnnnnnnn";
+    return false;
+  }
+  const { valid, isOrg, msg } = validateOrgOrPersonalNumber(val);
+  if (valid) {
+    text.innerHTML = `is a valid ${
+      isOrg ? "organisation" : "personal"
+    } number.`;
+  } else {
+    text.innerHTML = `is not a organisation or personal number.<br />- ${msg}`;
+  }
+}
+
+function keyCode(event, input) {
+  const text = document.getElementById("text");
+  var key = event.keyCode;
+  if (key === 27) {
+    input.value = "";
+    text.innerHTML = "Type to start";
+    return false;
+  }
 }

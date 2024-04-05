@@ -1,29 +1,51 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Personnummer or Organisationsnummer</title>
-  <meta name="description" content="Is personnummer or organisationsnummer">
-  <meta name="author" content="Gabriel Satzger">
-  <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
-  <script src="js/isPersonnummerOrOrganisationsnummer.js"></script>
-  <script src="js/site.js"></script>
-</head>
-<body>
-  <section>
-    <div class="wrapper">
-      <h1>personnummer or organisationsnummer</h1>
-      <form method="POST" action="" onsubmit="return false;">
-        <input type="text" id="org" name="org" oninput="validateInput();" />
-      </form>
-      <div class="info" id="text">Type to start</div>
-    </div>
-  </section>
-  <section>
-    <div class="footer">
-      <span class="startStop">/</span><span class="limiter">^</span><span class="operator">(</span><span class="red">\d</span><span class="pattern">{6}</span><span class="limiter">|</span><span class="red">\d</span><span class="pattern">{8}</span><span class="operator">)</span><span class="operator">(</span><span class="red">-</span><span class="limiter">|</span><span class="pattern">\+</span><span class="limiter">|</span><span class="pattern">\s</span><span class="operator">)</span><span class="pattern">?</span><span class="operator">(</span><span class="red">\d</span><span class="pattern">{4}</span><span class="operator">)</span><span class="limiter">$</span><span class="startStop">/</span>
-    </div>
-  </section>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Personnummer or Organisationsnummer</title>
+    <meta name="description" content="Is personnummer or organisationsnummer" />
+    <meta name="author" content="Gabriel Satzger" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="js/isPersonnummerOrOrganisationsnummer.js"></script>
+    <script src="js/site.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="wrapper">
+        <h1>personnummer or organisationsnummer</h1>
+        <form method="POST" action="" onsubmit="return false;">
+          <input
+            type="text"
+            id="org"
+            name="org"
+            oninput="validateInput(this.value);"
+            onkeydown="keyCode(event, this)"
+            autofocus
+            maxlength="13"
+          />
+        </form>
+        <div class="info" id="text">Type to start</div>
+      </div>
+    </section>
+    <section>
+      <div class="footer">
+        <span class="startStop">/</span><span class="limiter">^</span
+        ><span class="operator">(</span><span class="red">\d</span
+        ><span class="pattern">{6}</span><span class="limiter">|</span
+        ><span class="red">\d</span><span class="pattern">{8}</span
+        ><span class="operator">)</span><span class="operator">(</span
+        ><span class="red">-</span><span class="limiter">|</span
+        ><span class="pattern">\+</span><span class="limiter">|</span
+        ><span class="pattern">\s</span><span class="operator">)</span
+        ><span class="pattern">?</span><span class="operator">(</span
+        ><span class="red">\d</span><span class="pattern">{4}</span
+        ><span class="operator">)</span><span class="limiter">$</span
+        ><span class="startStop">/</span>
+      </div>
+    </section>
+  </body>
 </html>
