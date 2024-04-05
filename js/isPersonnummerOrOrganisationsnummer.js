@@ -88,3 +88,7 @@ function validateOrgOrPersonalNumber(input) {
 
   return { valid: checksum % 10 === 0, isOrg: isOrgNum, msg: checksum % 10 === 0 ? 'all good' : 'wrong checksum' };
 }
+
+module.exports = {
+  validateOrgOrPersonalNumber: validateOrgOrPersonalNumber,
+}

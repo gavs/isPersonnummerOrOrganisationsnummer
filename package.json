@@ -1,0 +1,23 @@
+{
+  "name": "ispersonnummerororganisationsnummer",
+  "version": "1.0.0",
+  "description": "Check if number is a Swedish personal ID number or an organisation number",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gavs/isPersonnummerOrOrganisationsnummer.git"
+  },
+  "keywords": [
+    "personnummer",
+    "organisationsnummer"
+  ],
+  "author": "Gabriel Satzger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gavs/isPersonnummerOrOrganisationsnummer/issues"
+  },
+  "homepage": "https://github.com/gavs/isPersonnummerOrOrganisationsnummer#readme"
+}
