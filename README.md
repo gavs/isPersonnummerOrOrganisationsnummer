@@ -36,13 +36,15 @@ console.log(validateOrgOrPersonalNumber("YYMMDDNNNN"));
 Example output:
 
 ```js
-{ valid: true, isOrg: true, msg: "all good" }
+{ valid: true, isSammordningsNum: false, isOrg: true, msg: "all good" }
 ```
 
-`valid: true` is valid input
+`valid: true` number is a valid input
 
-`isOrg: false` is personnummer
+`valid: true && isSammordningsNum: true` is personnummer/sammordningsnummer
 
-`isOrg: true` is organisationsnummer
+`valid: true && isOrg: false` is personnummer
+
+`valid: true && isOrg: true` is organisationsnummer
 
 `msg` additional info
