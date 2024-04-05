@@ -8,11 +8,16 @@ function validateInput(val) {
     text.innerHTML = "yymmdd-nnnn or nnnnnnnnnn";
     return false;
   }
-  const { valid, isOrg, msg } = validateOrgOrPersonalNumber(val);
+  const { valid, isSammordningsNum, isOrg, msg } =
+    validateOrgOrPersonalNumber(val);
   if (valid) {
     text.innerHTML = `is a valid ${
-      isOrg ? "organisation" : "personal"
-    } number.`;
+      isOrg
+        ? "organisationsnummer"
+        : isSammordningsNum
+        ? "personnummer/sammordningsnummer"
+        : "personnummer"
+    }.`;
   } else {
     text.innerHTML = `is not a organisation or personal number.<br />- ${msg}`;
   }

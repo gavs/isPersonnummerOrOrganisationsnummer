@@ -3,14 +3,23 @@ function getCurrentShortYear() {
   return d.getFullYear().toString().substr(-2);
 }
 
+// sammordningsnummer constants and initial asumptions
+const sammordningsNum = 60;
+const maxDaysPerMonth = 31;
+let isSammordningsNum = false;
+let isOrgNum = true;
+
 function isDate(year, month, day) {
   // months have number 0-11 in JavaScript
   const m = month - 1;
-  const tmpDate = new Date(year, m, day);
+  isSammordningsNum =
+    day > sammordningsNum && day <= maxDaysPerMonth + sammordningsNum;
+  const d = isSammordningsNum ? day - 60 : day;
+  const tmpDate = new Date(year, m, d);
   if (
     parseInt(tmpDate.getFullYear(), 10) === parseInt(year, 10) &&
     parseInt(tmpDate.getMonth(), 10) === parseInt(m, 10) &&
-    parseInt(tmpDate.getDate(), 10) === parseInt(day, 10)
+    parseInt(tmpDate.getDate(), 10) === parseInt(d, 10)
   ) {
     return true;
   }
@@ -30,9 +39,6 @@ function validateOrgOrPersonalNumber(input) {
   const separator = RegExp.$2;
   const controldigits = RegExp.$3;
   let number = group + controldigits;
-
-  // assume it is an organization number
-  let isOrgNum = true;
 
   // check if number is a personal number
   if (group.length === 8) {
@@ -101,6 +107,7 @@ function validateOrgOrPersonalNumber(input) {
 
   return {
     valid: checksum % 10 === 0,
+    isSammordningsNum: isSammordningsNum,
     isOrg: isOrgNum,
     msg: checksum % 10 === 0 ? "all good" : "wrong checksum",
   };
