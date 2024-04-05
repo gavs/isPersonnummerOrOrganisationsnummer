@@ -2,7 +2,7 @@
   "name": "ispersonnummerororganisationsnummer",
   "version": "1.0.0",
   "description": "Check if number is a Swedish personal ID number or an organisation number",
-  "main": "index.html",
+  "main": "./js/isPersonnummerOrOrganisationsnummer.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

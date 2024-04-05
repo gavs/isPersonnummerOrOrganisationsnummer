@@ -106,6 +106,4 @@ function validateOrgOrPersonalNumber(input) {
   };
 }
 
-module.exports = {
-  validateOrgOrPersonalNumber: validateOrgOrPersonalNumber,
-};
+module.exports = validateOrgOrPersonalNumber;
