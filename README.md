@@ -27,7 +27,7 @@ $ npm install ispersonnummerororganisationsnummer
 
 ## Example
 ```js
-const validateOrgOrPersonalNumber = require('ispersonnummerororganisationsnummer');
+const validateOrgOrPersonalNumber = require("ispersonnummerororganisationsnummer");
 console.log(validateOrgOrPersonalNumber("YYMMDDNNNN"));
 ```
 
@@ -36,7 +36,7 @@ console.log(validateOrgOrPersonalNumber("YYMMDDNNNN"));
 Example output:
 
 ```js
-{ valid: true, isOrg: true, msg: 'all good' }
+{ valid: true, isOrg: true, msg: "all good" }
 ```
 
 `valid: true` is valid input

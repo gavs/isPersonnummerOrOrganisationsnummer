@@ -9,15 +9,13 @@ if (!process.argv[2]) {
 
 const number = process.argv.slice(2, process.argv.length).join("");
 
-const {
-  validateOrgOrPersonalNumber,
-} = require("./isPersonnummerOrOrganisationsnummer.js");
+const validateOrgOrPersonalNumber = require("ispersonnummerororganisationsnummer");
 const { valid, isOrg, msg } = validateOrgOrPersonalNumber(number);
 
 const type = isOrg ? "organisationsnummer" : "personnummer";
 console.log(
   valid ? success : error,
-  valid ? `Number is valid ${type}` : "Number is invalid"
+  valid ? `${number} is a valid ${type}` : "Number is invalid"
 );
 if (!valid) {
   console.log(warning, msg);
