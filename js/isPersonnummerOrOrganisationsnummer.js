@@ -85,7 +85,7 @@ function validateOrgOrPersonalNumber(input) {
     !isOrgNum &&
     new Date(
       number.substring(0, 4),
-      number.substring(4, 6),
+      number.substring(4, 6) - 1,
       number.substring(6, 8)
     ) > new Date()
   ) {
