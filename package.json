@@ -12,7 +12,8 @@
   },
   "keywords": [
     "personnummer",
-    "organisationsnummer"
+    "organisationsnummer",
+    "sammordningsnummer"
   ],
   "author": "Gabriel Satzger",
   "license": "MIT",

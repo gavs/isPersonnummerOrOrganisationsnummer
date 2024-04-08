@@ -1,6 +1,6 @@
 function getCurrentShortYear() {
   const d = new Date();
-  return d.getFullYear().toString().substr(-2);
+  return d.toLocaleDateString(undefined, { year: "2-digit" });
 }
 
 // sammordningsnummer constants and initial asumptions
@@ -12,9 +12,11 @@ let isOrgNum = true;
 function isDate(year, month, day) {
   // months have number 0-11 in JavaScript
   const m = month - 1;
+  // check if birthday matches rule for sammordningsnummer (birthday + 60)
   isSammordningsNum =
     day > sammordningsNum && day <= maxDaysPerMonth + sammordningsNum;
-  const d = isSammordningsNum ? day - 60 : day;
+  const d = isSammordningsNum ? day - sammordningsNum : day;
+  // the date we are valdating
   const tmpDate = new Date(year, m, d);
   if (
     parseInt(tmpDate.getFullYear(), 10) === parseInt(year, 10) &&
@@ -32,7 +34,12 @@ function validateOrgOrPersonalNumber(input) {
     typeof input === "undefined" ||
     !input.match(/^(\d{6}|\d{8})(-|\+|\s)?(\d{4})$/)
   ) {
-    return { valid: false, isOrg: undefined, msg: "does not match input rule" };
+    return {
+      valid: false,
+      isSammordningsNum: undefined,
+      isOrg: undefined,
+      msg: "does not match input rule",
+    };
   }
 
   const group = RegExp.$1;
@@ -45,7 +52,12 @@ function validateOrgOrPersonalNumber(input) {
     isOrgNum = false;
     // personal number can't be before 1900's
     if (number.substring(0, 2) < 19) {
-      return { valid: false, isOrg: isOrgNum, msg: "year is less than 1900" };
+      return {
+        valid: false,
+        isSammordningsNum: false,
+        isOrg: isOrgNum,
+        msg: "year is less than 1900",
+      };
     }
   }
   // third number in an org number can not be less than 2
@@ -89,7 +101,12 @@ function validateOrgOrPersonalNumber(input) {
       number.substring(6, 8)
     ) > new Date()
   ) {
-    return { valid: false, isOrg: isOrgNum, msg: "future date" };
+    return {
+      valid: false,
+      isSammordningsNum: false,
+      isOrg: isOrgNum,
+      msg: "future date",
+    };
   }
 
   // calculate and validate checksum with Luhn algorithm
